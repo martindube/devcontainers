@@ -1,0 +1,47 @@
+{
+  "name": "My red team environment",
+  "forwardPorts": [
+    7443
+  ],
+  "dockerFile": "Dockerfile",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.csharp-devkit",
+        "ms-vscode.csharp",
+        "ms-vscode.powershell",
+        "ms-vscode.azurecli",
+        "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-azcli",
+        "GitHub.codespaces",
+        "ms-dotnettools.csdevkit",
+        "yzhang.markdown-all-in-one",
+        "hashicorp.hcl",
+        "emeraldwalk.RunOnSave",
+        "DotJoshJohnson.xml",
+        "hashicorp.terraform",
+        "ms-python.python"
+      ],
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "debug.node.autoAttach": "disabled"
+      }
+    }
+  },
+  "workspaceFolder": "/work",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/work,type=bind,consistency=cached",
+    "source=/tmp/.X11-unix,target=/tmp/.X11-unix,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh/id_ed25519,target=/work/infra/.ssh/id_ed25519,type=bind,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh/id_ed25519.pub,target=/work/infra/.ssh/id_ed25519.pub,type=bind,consistency=cached"
+  ],
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}"
+  }
+}
