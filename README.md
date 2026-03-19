@@ -7,7 +7,7 @@ This repository contains a collection of VS Code Development Containers (devcont
 | Container | Base Image | Primary Use Case | Key Tools | Capabilities |
 |-----------|------------|------------------|-----------|--------------|
 | 🏛️ **[Athena](#️-athena)** | `ubuntu:24.04` | Mythic C2 Agent Development | .NET SDK, Python 3.12, donut, Obfuscar | Cross-compilation (ARM64/Windows) |
-| 🐉 **[Kali](#-kali)** | `kalilinux/kali-rolling` | Penetration Testing | nmap, metasploit, burpsuite, nuclei | **Privileged container**, network admin |
+| 🐉 **[Kali](#-kali)** | `kalilinux/kali-rolling` | Penetration Testing | nmap, metasploit, burpsuite, nuclei | `NET_ADMIN`, `NET_RAW`, `SYS_ADMIN` capabilities |
 | 🎯 **[RedTeam](#-redteam)** | `mcr.microsoft.com/devcontainers/base:debian-12` | Red Team Operations | .NET tools, Terraform, PowerShell | Cloud infrastructure, X11 forwarding |
 
 ## Available Containers
@@ -88,7 +88,17 @@ Comprehensive penetration testing environment with Kali Linux metapackages and a
   - `paramiko` - SSH implementation
   - `shodan`, `censys` - Internet-wide scanning APIs
 
-**Container Capabilities:** Runs with `--privileged`, `NET_ADMIN`, `NET_RAW`, and `SYS_ADMIN` capabilities for comprehensive network testing.
+**Container Capabilities:** Runs with `NET_ADMIN`, `NET_RAW`, and `SYS_ADMIN` capabilities for comprehensive network testing.
+
+**Forwarded Ports:**
+  - `8080` - Burp Suite proxy
+  - `8000` - Simple HTTP server
+  - `4444` - Metasploit default listener
+  - `5432` - PostgreSQL (for Metasploit)
+  - `9001` - Common reverse shell port
+  - `6633` - OWASP ZAP proxy
+
+**VS Code Extensions:** Python, Debugpy, Hex Editor, PowerShell, YAML, Jupyter, and JSON support.
 
 **Use Case:** Comprehensive penetration testing, vulnerability assessments, and security research in an isolated environment with full Kali Linux toolset.
 

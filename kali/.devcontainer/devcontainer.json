@@ -4,25 +4,14 @@
     "dockerfile": "Dockerfile",
     "context": "."
   },
-  
   // Features to install
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": true,
       "configureZshAsDefaultShell": true,
-      "installOhMyZsh": true,
-      "upgradePackages": true
-    },
-    "ghcr.io/devcontainers/features/git:1": {
-      "ppa": true,
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.11",
-      "installTools": true
+      "installOhMyZsh": true
     }
   },
-
   // Configure tool-specific properties
   "customizations": {
     "vscode": {
@@ -41,37 +30,27 @@
       }
     }
   },
-
   // Use 'postCreateCommand' to run commands after the container is created
   "postCreateCommand": "/bin/bash .devcontainer/setup.sh",
-
   // Configure container properties
   "runArgs": [
-    "--privileged",
     "--cap-add=NET_ADMIN",
     "--cap-add=NET_RAW",
     "--cap-add=SYS_ADMIN"
   ],
-
   // Forward ports for common pentesting tools
   "forwardPorts": [
-    8080,  // Burp Suite proxy
-    8000,  // Simple HTTP server
-    4444,  // Metasploit default
-    5432,  // PostgreSQL (for Metasploit)
-    9001,  // Common reverse shell port
-    6633   // ZAP proxy
+    8000, // Simple HTTP server
+    4444, // Metasploit default
+    6633 // Additional proxy port
   ],
-
   // Set the default user
   "remoteUser": "root",
-
   // Mount the Docker socket for Docker-in-Docker scenarios
   "mounts": [
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
     "source=${localWorkspaceFolder},target=/work,type=bind"
   ],
-
   // Environment variables
   "containerEnv": {
     "DISPLAY": ":0",
