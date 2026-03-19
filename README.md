@@ -6,41 +6,11 @@ This repository contains a collection of VS Code Development Containers (devcont
 
 | Container | Base Image | Primary Use Case | Key Tools | Capabilities |
 |-----------|------------|------------------|-----------|--------------|
-| 🏛️ **[Athena](#️-athena)** | `ubuntu:24.04` | Mythic C2 Agent Development | .NET SDK, Python 3.12, donut, Obfuscar | Cross-compilation (ARM64/Windows) |
 | 🐉 **[Kali](#-kali)** | `kalilinux/kali-rolling` | Penetration Testing | nmap, metasploit, burpsuite, nuclei | `NET_ADMIN`, `NET_RAW`, `SYS_ADMIN` capabilities |
 | 🎯 **[RedTeam](#-redteam)** | `mcr.microsoft.com/devcontainers/base:debian-12` | Red Team Operations | .NET tools, Terraform, PowerShell | Cloud infrastructure, X11 forwarding |
+| 🏛️ **[Athena](#️-athena)** | `ubuntu:24.04` | Mythic C2 Agent Development | .NET SDK, Python 3.12, donut, Obfuscar | Cross-compilation (ARM64/Windows) |
 
 ## Available Containers
-
-### 🏛️ Athena
-
-**Path:** `athena/`
-**Base Image:** `ubuntu:24.04`
-
-Development environment for the Athena agent within the Mythic C2 framework. This container includes:
-
-- **Language Support:**
-  - Python 3.12 with development headers (`python3.12-dev`)
-  - .NET SDK 8.0.403 and 9.0.300 with cross-platform support
-  - Go build tools and cross-compilation support
-  
-- **Security/C2 Development Tools:**
-  - `pycryptodome` - Advanced cryptographic operations
-  - `mythic-container` - Mythic C2 framework integration
-  - `pefile` - PE file analysis and manipulation
-  - `donut` (v2.0.0) - Shellcode generation with ARM64 support
-  - `Obfuscar.GlobalTool` - .NET obfuscation capabilities
-  
-- **Cross-compilation Support:**
-  - `gcc-mingw-w64` - Windows cross-compilation
-  - `binutils-aarch64-linux-gnu` - ARM64 toolchain
-  - `libc-dev-arm64-cross` - ARM64 development libraries
-  
-- **Build Tools:**
-  - `protobuf-compiler` - Protocol buffer compilation
-  - Complete build toolchain (`build-essential`, `make`, `gcc`)
-
-**Use Case:** Developing, testing, and customizing Athena payloads for the Mythic Command & Control framework with multi-architecture support.
 
 ### 🐉 Kali
 
@@ -91,16 +61,15 @@ Comprehensive penetration testing environment with Kali Linux metapackages and a
 **Container Capabilities:** Runs with `NET_ADMIN`, `NET_RAW`, and `SYS_ADMIN` capabilities for comprehensive network testing.
 
 **Forwarded Ports:**
-  - `8080` - Burp Suite proxy
   - `8000` - Simple HTTP server
   - `4444` - Metasploit default listener
-  - `5432` - PostgreSQL (for Metasploit)
-  - `9001` - Common reverse shell port
-  - `6633` - OWASP ZAP proxy
+  - `6633` - Additional proxy port
 
 **VS Code Extensions:** Python, Debugpy, Hex Editor, PowerShell, YAML, Jupyter, and JSON support.
 
 **Use Case:** Comprehensive penetration testing, vulnerability assessments, and security research in an isolated environment with full Kali Linux toolset.
+
+> **Note:** All packages and tools are installed automatically via the setup script on the first run of the devcontainer. This may take several minutes.
 
 ### 🎯 RedTeam
 
@@ -143,6 +112,36 @@ Advanced red team operations environment with cloud infrastructure and developme
 
 **Use Case:** Advanced red team exercises, cloud infrastructure assessment, .NET application security testing, and adversarial simulation with development capabilities.
 
+### 🏛️ Athena
+
+**Path:** `athena/`
+**Base Image:** `ubuntu:24.04`
+
+Development environment for the Athena agent within the Mythic C2 framework. This container includes:
+
+- **Language Support:**
+  - Python 3.12 with development headers (`python3.12-dev`)
+  - .NET SDK 8.0.403 and 9.0.300 with cross-platform support
+  - Go build tools and cross-compilation support
+  
+- **Security/C2 Development Tools:**
+  - `pycryptodome` - Advanced cryptographic operations
+  - `mythic-container` - Mythic C2 framework integration
+  - `pefile` - PE file analysis and manipulation
+  - `donut` (v2.0.0) - Shellcode generation with ARM64 support
+  - `Obfuscar.GlobalTool` - .NET obfuscation capabilities
+  
+- **Cross-compilation Support:**
+  - `gcc-mingw-w64` - Windows cross-compilation
+  - `binutils-aarch64-linux-gnu` - ARM64 toolchain
+  - `libc-dev-arm64-cross` - ARM64 development libraries
+  
+- **Build Tools:**
+  - `protobuf-compiler` - Protocol buffer compilation
+  - Complete build toolchain (`build-essential`, `make`, `gcc`)
+
+**Use Case:** Developing, testing, and customizing Athena payloads for the Mythic Command & Control framework with multi-architecture support.
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -173,7 +172,7 @@ Advanced red team operations environment with cloud infrastructure and developme
    - Type "Dev Containers: Reopen in Container"
    - Select the command
 
-4. VS Code will build and start the devcontainer with all pre-configured tools and dependencies.
+4. VS Code will build and start the devcontainer with all pre-configured tools and settings.
 
 ## 🔧 Container Structure
 
